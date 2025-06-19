@@ -109,7 +109,7 @@ body {
   }
 
   .intro-section img {
-    max-width: 250px;
+    max-width: 400px;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -123,3 +123,56 @@ body {
     padding: 2rem; 
     text-align: center;
   }
+
+  footer {    
+    text-align: center;
+    font-size: 0.75rem; /* or even smaller, e.g. 0.6rem */
+    color: #666; /* optional: a bit lighter color */
+  }
+
+  .form-container {
+  position: relative;
+  padding-bottom: 125%; /* roughly height/width ratio of form */
+  height: 0;
+  overflow: scroll;
+  max-width: 600px; /* max width of the form */
+  margin: auto;
+}
+
+  .form-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media (max-width: 600px) {
+  .intro-section {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;    /* centers children vertically */
+    padding-left: 1rem;         /* reduce left padding */
+    padding-right: 1rem;        /* reduce right padding */
+    margin-left: auto;          /* center the container */
+    margin-right: auto;
+    box-sizing: border-box;     /* include padding in width */
+    width: 100%;                /* full width */
+    max-width: 600px;           /* optional max width */
+  }
+  .intro-section img {
+    max-width: 50vw; /* max 90% of viewport width on small screens */
+  }
+  .intro-text {
+    max-width: 90vw;
+    text-align: center;
+  }
+
+  .form-container {
+    max-width: 200vw;       /* let container fill the screen width */
+    padding-bottom: 160%;   /* adjust aspect ratio if needed */
+    overflow-x: scroll;    /* allow horizontal overflow if needed */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
