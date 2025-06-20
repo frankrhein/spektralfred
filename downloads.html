@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spektralfred</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+  <header>
+    <div id="navbar-placeholder"></div>
+  </header>
+
+  <main>
+
+    <h2>Dowload HD Images</h2>
+    <p>All images on my website are free for you to download in HD. You can print them, use them as wallpaper, or anything really. However, please consider these points:</p>
+
+      <section class="donation-box">
+        <ol>
+          <li>These images are free to use under the <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0 license</a>. Please credit: "Frank Rhein – spektralfred.de"</li>
+          <li>I am happy to receive honest and real feedback at <a href="mailto:hi@spektralfred.de">hi[at]spektralfred.de</a> or WhatsApp if you know me well enough 😉</li>
+          <li>Consider giving something back to a good cause. You can use both links below. 100% goes directly to the <a href="https://www.uno-fluechtlingshilfe.de/">UN Refugee Agency</a>.</li>
+        </ol>    
+        <a href="https://www.paypal.com/pools/c/9fSNnJq51B" target="_blank" class="donate-button">
+            🌱 Donate via PayPal Fundraiser
+        </a>
+        <a href="https://www.uno-fluechtlingshilfe.de/spenden-helfen/online-spenden" target="_blank" class="donate-button">
+            🌱 Donate directly to the charity
+        </a>
+    </section>
+
+    <section class="downloads-section">
+        <div class="category">
+          <h2>Nature</h2>
+          <div class="image-grid" id="nature"></div>
+        </div>
+
+        <div class="category">
+          <h2>Misc</h2>
+          <div class="image-grid" id="misc"></div>
+        </div>
+
+        <div class="category">
+          <h2>Street</h2>
+          <div class="image-grid" id="street"></div>
+        </div>
+
+        <div class="category">
+          <h2>Morocco</h2>
+          <div class="image-grid" id="morocco"></div>
+        </div>  
+    </section>
+
+  </main>
+
+    <div id="license-popup" class="license-popup" style="display: none;">
+    <div class="license-popup-content">
+      <h3>License Notice</h3>
+      <p>These images are licensed under <strong>CC BY 4.0</strong>.<br />You are free to use them with attribution to "[Your Name] – spektralfred.de".</p>
+      <label><input type="checkbox" id="dont-show-again"> Don't show again</label><br><br>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    function closePopup() {
+      if (document.getElementById('dont-show-again').checked) {
+        localStorage.setItem('hideLicensePopup', 'true');
+      }
+      document.getElementById('license-popup').style.display = 'none';
+    }
+
+    window.addEventListener('load', () => {
+      const hidePopup = localStorage.getItem('hideLicensePopup') === 'true';
+      if (!hidePopup) {
+        document.getElementById('license-popup').style.display = 'flex';
+      }
+
+      const grids = document.querySelectorAll('.image-grid');
+      grids.forEach(grid => {
+        const category = grid.id;
+        const listPath = `assets/${category}/imagelist.txt`;
+        const lowResPath = `assets/${category}/`;
+        const hdPath = `hd-downloads/${category}/`;
+
+        fetch(listPath)
+          .then(response => response.text())
+          .then(text => {
+            const files = text.split('\n').filter(Boolean);
+            files.forEach(filename => {
+              const link = document.createElement('a');
+              link.href = hdPath + filename;
+              link.download = '';
+
+              const img = document.createElement('img');
+              img.src = lowResPath + filename;
+              img.alt = filename;
+
+              link.appendChild(img);
+              grid.appendChild(link);
+            });
+          });
+      });
+    });
+  </script>
+
+  <footer>
+    <div id="footer-placeholder"></div>
+  </footer>
+
+  <script src="lightbox.js"></script>
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        // Optional: highlight current page here
+      })
+      .catch(err => console.error('Failed to load navbar', err));
+
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+        // Optional: highlight current page here
+      })
+      .catch(err => console.error('Failed to load footer', err));
+  </script>
+</body>
+</html>

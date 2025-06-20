@@ -1,19 +1,59 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-color: #f9f9f9;
-    color: #333;
+  :root {
+    --col-bg-dark: #1a1a1a;
+    --col-bg-light: #2a2a2a;
+    --col-text: #ddd;
+    --col-acc: #A8E6CF;
+    --col-acc-dark: #7FC9A9;
   }
-  
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    /* background-color: #f9f9f9;
+    color: #333; */
+    background-color: var(--col-bg-light);
+    color: var(--col-text);
+    text-align: center;
+  }
+
+  h1, h2, h3 {
+    font-family: "Lora", serif;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+
   header {
-    background: #222;
-    color: white;
+    background: var(--col-bg-dark);
+    color: var(--col-text);
     padding: 1rem;
     text-align: center;
   }
-  
+
+  ol {
+    list-style-position: inside; /* makes numbers part of the text flow */
+    padding-left: 0;             /* remove default indent */
+    text-align: center;          /* center the whole list */
+    margin: auto;
+  }
+
+  ol li {
+    /* optional: add some spacing */
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+  color: var(--col-acc);
+  text-decoration: none;
+  }
+
+  a:visited {
+    color: var(--col-acc); /* prevent color change after click */
+  }
+
   nav a {
-    color: white;
+    color: var(--col-text);
     margin: 0 1rem;
     text-decoration: none;
   }
@@ -74,7 +114,7 @@ body {
   .lightbox .prev,
   .lightbox .next {
     position: absolute;
-    color: white;
+    color: var(--col-text);
     font-size: 2rem;
     cursor: pointer;
     user-select: none;
@@ -112,7 +152,7 @@ body {
     max-width: 400px;
     height: auto;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   }
 
   .intro-text {
@@ -127,7 +167,7 @@ body {
   footer {    
     text-align: center;
     font-size: 0.75rem; /* or even smaller, e.g. 0.6rem */
-    color: #666; /* optional: a bit lighter color */
+    color: var(--col-text); /* optional: a bit lighter color */
   }
 
   .form-container {
@@ -146,6 +186,79 @@ body {
     height: 100%;
     border: 0;
   }
+
+  .donation-box {
+    display: inline-block;
+    background: var(--col-bg-dark);
+    padding: 2rem;
+    /* margin: 2rem auto; */
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    /* max-width: 900px; */
+  }
+
+  .donate-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    background-color: var(--col-acc); /* PayPal blue */
+    color: var(--col-bg-dark) !important;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+
+  .donate-button:hover {
+    background-color: var(--col-acc-dark);
+  }
+
+    .downloads-section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .category {
+      margin-bottom: 3rem;
+    }
+
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .image-grid a img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .license-popup {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .license-popup-content {
+      color: var(--col-text);
+      background: var(--col-bg-dark);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+      text-align: center;
+    }
 
   @media (max-width: 600px) {
   .intro-section {
