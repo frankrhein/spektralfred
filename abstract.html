@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>spektralfred</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <style>
+    /* Minimal styles for lightbox */
+    .hidden { display: none; }
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+    .close, .prev, .next {
+      position: absolute;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      user-select: none;
+      padding: 0 10px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 5px;
+    }
+    .close { top: 20px; right: 30px; }
+    .prev { top: 50%; left: 30px; transform: translateY(-50%); }
+    .next { top: 50%; right: 30px; transform: translateY(-50%); }
+  </style>
+</head>
+<body>
+  <header>
+    <div id="navbar-placeholder"></div>
+  </header>
+
+  <main>
+    <h2>Abstract</h2>
+    <p>Random thingies</p>
+
+    <div class="gallery" id="gallery"></div>
+
+    <div id="lightbox" class="lightbox hidden">
+      <span class="close">&times;</span>
+      <img id="lightbox-img" src="" alt="Enlarged Photo" />
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
+    </div>
+  </main>
+
+  <footer>
+    <div id="navbar-placeholder"></div>
+  </footer>
+
+  <script>
+    const galleryElement = document.getElementById('gallery');
+    const imageFolder = './assets/abstract';
+    const listFile = `${imageFolder}/imagelist.txt`;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = lightbox.querySelector('.close');
+    const prevBtn = lightbox.querySelector('.prev');
+    const nextBtn = lightbox.querySelector('.next');
+
+    let imageFiles = [];
+    let currentIndex = 0;
+
+    // Load image list and build gallery
+    fetch(listFile)
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to fetch image list');
+        return response.text();
+      })
+      .then(text => {
+        imageFiles = text.trim().split('\n');
+        imageFiles.forEach((fileName, index) => {
+          const img = document.createElement('img');
+          img.src = `${imageFolder}/${fileName}`;
+          img.alt = `Abstract ${index + 1}`;
+          img.className = 'clickable';
+          img.style.cursor = 'pointer';
+
+          // Click to open lightbox at this image
+          img.addEventListener('click', () => openLightbox(index));
+
+          galleryElement.appendChild(img);
+        });
+
+        document.querySelectorAll('img').forEach(img => {
+          img.addEventListener('contextmenu', e => e.preventDefault());
+        });
+      })
+      .catch(error => {
+        console.error('Error loading image list:', error);
+      });
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightboxImage();
+      lightbox.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = ''; // Restore scroll
+    }
+
+    function updateLightboxImage() {
+      lightboxImg.src = `${imageFolder}/${imageFiles[currentIndex]}`;
+      lightboxImg.alt = `Abstract ${currentIndex + 1}`;
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % imageFiles.length;
+      updateLightboxImage();
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + imageFiles.length) % imageFiles.length;
+      updateLightboxImage();
+    }
+
+    // Event listeners for controls
+    closeBtn.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click', showNext);
+    prevBtn.addEventListener('click', showPrev);
+
+    // Close lightbox on background click
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'ArrowRight') showNext();
+      else if (e.key === 'ArrowLeft') showPrev();
+      else if (e.key === 'Escape') closeLightbox();
+    });
+
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        // Optional: highlight current page here
+      })
+      .catch(err => console.error('Failed to load navbar', err));
+
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+        // Optional: highlight current page here
+      })
+      .catch(err => console.error('Failed to load footer', err));
+  </script>
+</body>
+</html>

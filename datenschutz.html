@@ -2,16 +2,19 @@
 <html lang="de">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
-  <meta charset="UTF-8">
-  <title>Datenschutzerklärung</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>spektralfred</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 </head>
 <body>
   <header>
-    <h1>Datenschutzerklärung</h1>
+    <div id="navbar-placeholder"></div>
   </header>
 
   <main>
+    <h1>Datenschutzerklärung</h1>
     <h2>1. Allgemeine Hinweise</h2>
     <p>
       Diese Website erhebt und speichert keine personenbezogenen Daten, außer Sie tragen Ihre E-Mail-Adresse aktiv in das Formular zur Newsletter-Anmeldung ein.
@@ -40,7 +43,26 @@
   </main>
 
   <footer>
-    <p><a href="index.html">Zurück zur Startseite</a></p>
+    <div id="footer-placeholder"></div>
   </footer>
+
+  <script src="lightbox.js"></script>
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+        // Optional: highlight current page here
+      })
+      .catch(err => console.error('Failed to load navbar', err));
+
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+        // Optional: highlight current page here
+      })
+      .catch(err => console.error('Failed to load footer', err));
+  </script>
 </body>
 </html>

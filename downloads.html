@@ -7,6 +7,8 @@
   <title>spektralfred</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <script data-goatcounter="https://spektralfred.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <header>
@@ -31,7 +33,7 @@
             🌱 Donate directly to the charity
         </a>
     </section>
-
+    <p>Simply click on the respective image, or click <a href="https://download-directory.github.io/?url=https://github.com/frankrhein/spektralfred/tree/main/hd-downloads" target="_blank">here</a> to download all at once (.zip).</p>
     <section class="downloads-section">
         <div class="category">
           <h2>Nature</h2>
@@ -39,13 +41,13 @@
         </div>
 
         <div class="category">
-          <h2>Misc</h2>
-          <div class="image-grid" id="misc"></div>
+          <h2>Abstract</h2>
+          <div class="image-grid" id="abstract"></div>
         </div>
 
         <div class="category">
-          <h2>Street</h2>
-          <div class="image-grid" id="street"></div>
+          <h2>People</h2>
+          <div class="image-grid" id="people"></div>
         </div>
 
         <div class="category">
@@ -56,28 +58,28 @@
 
   </main>
 
-    <div id="license-popup" class="license-popup" style="display: none;">
+    <!-- <div id="license-popup" class="license-popup" style="display: none;">
     <div class="license-popup-content">
       <h3>License Notice</h3>
       <p>These images are licensed under <strong>CC BY 4.0</strong>.<br />You are free to use them with attribution to "[Your Name] – spektralfred.de".</p>
       <label><input type="checkbox" id="dont-show-again"> Don't show again</label><br><br>
       <button onclick="closePopup()">OK</button>
     </div>
-  </div>
+  </div> -->
 
   <script>
-    function closePopup() {
-      if (document.getElementById('dont-show-again').checked) {
-        localStorage.setItem('hideLicensePopup', 'true');
-      }
-      document.getElementById('license-popup').style.display = 'none';
-    }
+    // function closePopup() {
+    //   if (document.getElementById('dont-show-again').checked) {
+    //     localStorage.setItem('hideLicensePopup', 'true');
+    //   }
+    //   document.getElementById('license-popup').style.display = 'none';
+    // }
 
     window.addEventListener('load', () => {
-      const hidePopup = localStorage.getItem('hideLicensePopup') === 'true';
-      if (!hidePopup) {
-        document.getElementById('license-popup').style.display = 'flex';
-      }
+      // const hidePopup = localStorage.getItem('hideLicensePopup') === 'true';
+      // if (!hidePopup) {
+      //   document.getElementById('license-popup').style.display = 'flex';
+      // }
 
       const grids = document.querySelectorAll('.image-grid');
       grids.forEach(grid => {
