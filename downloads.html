@@ -96,6 +96,15 @@
               const link = document.createElement('a');
               link.href = hdPath + filename;
               link.download = '';
+              
+              link.addEventListener('click', () => {
+                if (window.goatcounter && goatcounter.count) {
+                  goatcounter.count({
+                    path: `/download/${category}/${filename}`,
+                    title: `Download: ${filename}`
+                  });
+                }
+              });
 
               const img = document.createElement('img');
               img.src = lowResPath + filename;
