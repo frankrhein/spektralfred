@@ -1,0 +1,8 @@
+pe_01|Two people, one in profile and partially silhouetted, looking towards a majestic snow-capped mount Fuji.
+pe_02|A person walking on a path in a sunny, green park with rolling hills and scattered trees.
+pe_03|A grand architectural building with a green dome, partially obscured by a tree trunk, with the sun's rays shining from behind it.
+pe_04|Two individuals looking up at a detailed, old European-style building adorned with flags and spires.
+pe_05|A narrow urban street or alleyway, with a brick wall on the left covered in colorful graffiti and legs sticking out.
+pe_06|A wide-angle view of a bustling indoor space with ornate architecture, showing people walking, some blurred by motion.
+pe_07|A black and white shot of a modern staircase, with a person's legs visible at the top, ascending.
+pe_08|An abstract, blue-toned image with a circular element and a faint, ghostly outline of a figure, possibly a reflection.

@@ -4,6 +4,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Impressions from Morocco — street scenes, colors, and landscapes.">
   <title>spektralfred</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
@@ -44,8 +45,10 @@
   </header>
 
   <main>
-    <h2>Morocco</h2>
-    <p>This page features some of my favorite photos from marocco</p>
+    <section class="gallery-intro">
+      <h2>Morocco</h2>
+      <p class="quote">“Marrakech taught me color.”<br><em>Yves Saint Laurent</em></p>
+    </section>
 
     <div class="gallery" id="gallery"></div>
 
@@ -58,13 +61,16 @@
   </main>
 
   <footer>
-    <div id="navbar-placeholder"></div>
+    <div id="footer-placeholder"></div>
   </footer>
 
   <script>
     const galleryElement = document.getElementById('gallery');
-    const imageFolder = './assets/morocco';
+    const category = 'morocco'; 
+    const imageFolder = `./assets/${category}`;
     const listFile = `${imageFolder}/imagelist.txt`;
+    const altTextFile = `${imageFolder}/alt-texts.txt`;
+
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = lightbox.querySelector('.close');
@@ -72,52 +78,71 @@
     const nextBtn = lightbox.querySelector('.next');
 
     let imageFiles = [];
+    let altTexts = {};
     let currentIndex = 0;
 
-    // Load image list and build gallery
-    fetch(listFile)
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to fetch image list');
-        return response.text();
-      })
+    // Load alt-texts first
+    fetch(altTextFile)
+      .then(res => res.ok ? res.text() : '')
       .then(text => {
-        imageFiles = text.trim().split('\n');
-        imageFiles.forEach((fileName, index) => {
-          const img = document.createElement('img');
-          img.src = `${imageFolder}/${fileName}`;
-          img.alt = `Morocco ${index + 1}`;
-          img.className = 'clickable';
-          img.style.cursor = 'pointer';
-
-          // Click to open lightbox at this image
-          img.addEventListener('click', () => openLightbox(index));
-
-          galleryElement.appendChild(img);
-        });
-
-        document.querySelectorAll('img').forEach(img => {
-          img.addEventListener('contextmenu', e => e.preventDefault());
+        text.split('\n').forEach(line => {
+          const [name, alt] = line.split('|');
+          if (name && alt) {
+            altTexts[name.trim()] = alt.trim();
+          }
         });
       })
-      .catch(error => {
-        console.error('Error loading image list:', error);
+      .catch(() => {}) // Fail silently if alt-text file doesn't exist
+      .finally(() => {
+        // Now load images and build gallery
+        fetch(listFile)
+          .then(response => {
+            if (!response.ok) throw new Error('Failed to fetch image list');
+            return response.text();
+          })
+          .then(text => {
+            imageFiles = text.trim().split('\n');
+            imageFiles.forEach((fileName, index) => {
+              const baseName = fileName.replace(/\.[^/.]+$/, ''); // remove extension
+              const alt = altTexts[baseName] || `${category} photo ${index + 1}`;
+
+              const img = document.createElement('img');
+              img.src = `${imageFolder}/${fileName}`;
+              img.alt = alt;
+              img.className = 'clickable';
+              img.style.cursor = 'pointer';
+
+              img.addEventListener('click', () => openLightbox(index));
+
+              galleryElement.appendChild(img);
+            });
+
+            document.querySelectorAll('img').forEach(img => {
+              img.addEventListener('contextmenu', e => e.preventDefault());
+            });
+          })
+          .catch(error => {
+            console.error('Error loading image list:', error);
+          });
       });
 
     function openLightbox(index) {
       currentIndex = index;
       updateLightboxImage();
       lightbox.classList.remove('hidden');
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
+      document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
       lightbox.classList.add('hidden');
-      document.body.style.overflow = ''; // Restore scroll
+      document.body.style.overflow = '';
     }
 
     function updateLightboxImage() {
-      lightboxImg.src = `${imageFolder}/${imageFiles[currentIndex]}`;
-      lightboxImg.alt = `Morocco ${currentIndex + 1}`;
+      const fileName = imageFiles[currentIndex];
+      const baseName = fileName.replace(/\.[^/.]+$/, '');
+      lightboxImg.src = `${imageFolder}/${fileName}`;
+      lightboxImg.alt = altTexts[baseName] || `${category} photo ${currentIndex + 1}`;
     }
 
     function showNext() {
@@ -130,17 +155,14 @@
       updateLightboxImage();
     }
 
-    // Event listeners for controls
     closeBtn.addEventListener('click', closeLightbox);
     nextBtn.addEventListener('click', showNext);
     prevBtn.addEventListener('click', showPrev);
 
-    // Close lightbox on background click
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) closeLightbox();
     });
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (lightbox.classList.contains('hidden')) return;
       if (e.key === 'ArrowRight') showNext();

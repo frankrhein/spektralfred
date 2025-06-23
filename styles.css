@@ -268,7 +268,35 @@
       max-width: 500px;
       text-align: center;
     }
+    
+    .gallery-intro{
+      max-width: 600px;
+      margin: auto;
+    }
 
+    .gallery-intro h2 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-intro .quote {
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .gallery-intro .quote em {
+      font-style: normal;
+      /* font-weight: 600; */
+      /* display: inline-block;   */
+      /* margin-left: 10em; */
+      display: block;
+      text-align: right;
+      margin-top: 0.3rem;
+      margin-right: 50px;
+      color: var(--col-text);
+    }
   @media (max-width: 600px) {
   .intro-section {
     flex-direction: column;
@@ -296,5 +324,15 @@
     overflow-x: scroll;    /* allow horizontal overflow if needed */
     margin-left: auto;
     margin-right: auto;
+  }
+
+    .gallery img {
+    width: calc((100% - 30px) / 2); /* 4 images per row, minus gaps */
+    /* height: auto; */
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
 }

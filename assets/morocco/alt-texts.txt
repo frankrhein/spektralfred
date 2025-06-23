@@ -1,0 +1,12 @@
+ma_01|A tall, light-brown minaret with intricate carvings and a green tiled roof stands against a clear blue sky. Palm trees are visible on the left.
+ma_02|A plain, light-colored wall with a small pigeon sitting on it, under a bright blue sky.
+ma_03|A bustling market street filled with people, stalls, and goods, under a shaded canopy.
+ma_04|A small, light orange kitten with wide eyes sits on a stone surface, looking directly at the viewer.
+ma_05|A person riding a camel along a sandy beach near the water's edge, with the ocean and sky in the background.
+ma_06|A wide sandy beach with many people, several swings, and the word "Taghazout" written in the sand in a stylized font.
+ma_07|A person sitting atop a series of weathered stone steps carved into a rocky outcrop, overlooking a landscape.
+ma_08|A silhouetted cityscape or town against a vibrant orange and yellow sunset or sunrise sky, with layers of hills or mountains in the background.
+ma_09|A dry, arid landscape with rolling brown mountains in the distance and sparse vegetation in the foreground.
+ma_10|A valley with numerous date palm trees, with rugged, rocky mountains in the background under a hazy sky.
+ma_11|A closed, double-doored building with distressed yellow paint and a pattern of raised diamond shapes on the doors.
+ma_12|Vast sand dunes with subtle patterns from wind, under a clear sky, stretching into the distance.
