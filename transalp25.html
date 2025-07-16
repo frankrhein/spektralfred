@@ -4,7 +4,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="..cylcing mountains spektralfred — mountains, trees and water.">
+  <meta name="description" content="Bikepacking 2025 — A personal photo gallery of a Transalp cycling adventure with Google Pixel photography and route insights.">
   <title>spektralfred</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
@@ -48,11 +48,33 @@
     <section class="gallery-intro">
       <h2>Bikepacking 2025</h2>
       <p class="quote">“MAGA - Make Alpine Great Again”<br><em>Thilo K.</em></p>
-      <br>
-      <p>All images were taken and edited with my phone 📱 (Google Pixel 8 pro)</p>
     </section>
 
     <div class="gallery" id="gallery"></div>
+    
+    <hr style="margin-top: 2rem; margin-bottom: 1rem;">
+
+    <section style="text-align: center">
+      <h3>Some Info</h3>
+      <p>All images were taken and edited with my phone 📱 (Google Pixel 8 pro). <br>
+        An insane amount of sweets were consumed. <br>
+        Current physical state is cinematically visualized <a href="https://youtu.be/34CqtpYE-1k?si=22nrQ5MgHm_Ary8G" target="_blank">here</a>. <br>
+        The route was "optimized" to collect as many <a href="https://www.quaeldich.de/highlights/club-2k/" target="_blank">Club 2K</a> mountain passes as possible. <br>
+        You can see the route by clicking the map below. If you want to know specifics you can find each day on Strava [
+        <a href="https://www.strava.com/activities/15016056240" target="_blank">1</a>,
+        <a href="https://www.strava.com/activities/15024893081" target="_blank">2</a>,
+        <a href="https://www.strava.com/activities/15035223702" target="_blank">3</a>,
+        <a href="https://www.strava.com/activities/15045413400" target="_blank">4</a>,
+        <a href="https://www.strava.com/activities/15058342628" target="_blank">5</a>,
+        <a href="https://www.strava.com/activities/15069052614" target="_blank">6</a>,
+        <a href="https://www.strava.com/activities/15078218199" target="_blank">7</a> and
+        <a href="https://www.strava.com/activities/15089562993" target="_blank">8</a>].</p>
+      <img
+        src="assets/transalp25_map.jpg"
+        alt="Bikepacking Route Map Club 2k Transalp Insbruck to Lake Garda."
+        id="extra-img"
+      />
+    </section>
 
     <div id="lightbox" class="lightbox hidden">
       <span class="close">&times;</span>
@@ -140,6 +162,9 @@
     function closeLightbox() {
       lightbox.classList.add('hidden');
       document.body.style.overflow = '';
+
+      prevBtn.style.display = '';
+      nextBtn.style.display = '';
     }
 
     function updateLightboxImage() {
@@ -173,6 +198,19 @@
       else if (e.key === 'ArrowLeft') showPrev();
       else if (e.key === 'Escape') closeLightbox();
     });
+        
+    const extraImg = document.getElementById('extra-img');
+    if (extraImg) {
+      extraImg.addEventListener('click', () => {
+        lightboxImg.src = extraImg.src;
+        lightboxImg.alt = extraImg.alt || 'Extra image';
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        // Hide navigation arrows for standalone image
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+      });
+    }
 
     fetch('navbar.html')
       .then(response => response.text())

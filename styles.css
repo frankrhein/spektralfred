@@ -85,7 +85,14 @@
   .gallery img:hover {
     transform: scale(1.02);
   }
-  
+  #extra-img {
+    width: 50%; 
+    cursor: pointer;
+  }
+
+  #extra-img:hover {
+    transform: scale(1.02);
+  }
   .lightbox {
     position: fixed;
     top: 0;
@@ -326,7 +333,7 @@
     margin-right: auto;
   }
 
-    .gallery img {
+  .gallery img {
     width: calc((100% - 30px) / 2); /* 4 images per row, minus gaps */
     /* height: auto; */
     aspect-ratio: 1 / 1;
@@ -334,5 +341,9 @@
     cursor: pointer;
     border-radius: 6px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  #extra-img {
+    width: 90%;
   }
 }
