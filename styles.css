@@ -293,6 +293,20 @@
       line-height: 1.4;
     }
 
+    .gallery-intro .quote .not-italic {
+      font-style: normal;
+      display: inline-block;
+      
+      /* Keeps the link color the same as the rest of the quote text */
+      color: inherit; 
+    }
+
+    /* Optional: Changes the underline on hover to look interactive */
+    .gallery-intro .quote .not-italic:hover {
+      text-decoration: underline solid;
+      cursor: pointer;
+    }
+
     .gallery-intro .quote em {
       font-style: normal;
       /* font-weight: 600; */

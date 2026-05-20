@@ -1,0 +1,12 @@
+ja_01|Scenic view of a traditional Japanese garden with a calm pond reflecting lush green trees and buildings in the background.
+ja_02|The historic Osaka Castle towering over massive stone walls and a surrounding water moat under a blue sky.
+ja_03|A stone statue of a fierce Nio guardian deity standing behind a protective wire mesh at a Japanese temple entrance.
+ja_04|A young deer standing on stone steps in front of a traditional red wooden torii gate in a forested area.
+ja_05|A narrow, quiet city street in Japan lined with local shops, residential buildings, and a parked scooter.
+ja_06|The cozy storefront of a traditional Japanese izakaya or restaurant at night, with warm light glowing from the interior.
+ja_07|Close-up of a chef cooking savory okonomiyaki pancakes on a flat hot griddle, sprinkling toppings over them.
+ja_08|Silhouette of two people sitting inside a dimly lit restaurant, viewed from the outside through a frosted glass window at night.
+ja_09|Two city buses parked next to each other at a transit station at night with their headlights and destination signs illuminated.
+ja_10|Interior view of an empty Japanese train car showing long green fabric bench seats and overhead hand straps.
+ja_11|Black and white photograph of a modern high-rise building next to a tall, abstract public art statue reaching toward the sky.
+ja_12|A concrete riverside walkway with a metal railing, looking down towards a bridge and city skyline under a bright sky.
