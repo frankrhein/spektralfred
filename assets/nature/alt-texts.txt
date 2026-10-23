@@ -2,7 +2,7 @@ na_01|Landscape image of the Buachaille Etive Mór mountain in the Highlands, Sc
 na_02|Snowy mountain peak in Austria with bird flying 
 na_03|Orange sunset over Loch Linnhe close to Glencoe, Scotland
 na_04|Boats on a lake in Scotland
-na_05|Calm, red sunset over a lake in Mecklenburg, Germany
+na_05|Lone pine tree beside autumn vineyards under a blue sky
 na_06|White beach and blue water at Whitehaven Beach, Australia
-na_07|Green field with trees casting long shadows
+na_07|Wicker beach chairs with striped awnings on a Baltic Sea beach, Germany, with a seagull flying overhead
 na_08|The milky way behind a tree calmly illuminated
